@@ -7,3 +7,4 @@ go-bootstrap-starter-kit helps to kickstart your go app in style. It includes bo
 `git clone git@github.com:kgthegreat/go-bootstrap-starter-kit.git app-name`
 `go build`
 `./app-name`
+`git remote rm origin`
