@@ -2,8 +2,8 @@ package main
 
 import (
 	"errors"
+	"html/template"
 	"net/http"
-	"text/template"
 )
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p interface{}) {

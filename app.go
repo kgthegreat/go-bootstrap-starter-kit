@@ -4,10 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"net"
 	"net/http"
 	"os"
-	"strconv"
 )
 
 var mode string
@@ -32,18 +30,6 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", staticHandler))
 	http.HandleFunc("/", indexHandler)
 
-	if os.Getenv("LISTEN_PID") == strconv.Itoa(os.Getpid()) {
-		// systemd run
-		f := os.NewFile(3, "from systemd")
-		l, err := net.FileListener(f)
-		if err != nil {
-			log.Fatal(err)
-		}
-		http.Serve(l, nil)
-	} else {
-		// manual run
-		//		log.Fatal(http.ListenAndServe(":8080", nil))
-		log.Fatal(http.ListenAndServe(":"+*portPtr, nil))
-	}
+	log.Fatal(http.ListenAndServe(":"+*portPtr, nil))
 
 }
